@@ -34,8 +34,10 @@ app.use(express.json());
  * Server Activation
  */
 
-function buscaSilva (people: People){
-	return people.getNome().indexOf("Silva");
+function calculaIMC (people: People){
+
+	var imc = people.getPeso() / (Math.pow(people.getAltura(), 2));
+	return imc;
 }
 
 app.listen(PORT, () => {
@@ -58,10 +60,19 @@ app.listen(PORT, () => {
 	var filtroAgruparNomes = peopleUbuntu.filter(nomes => (nomes.people.getNome()));
 	var nomes = "";
 	for(var nome of filtroAgruparNomes){		
-		nomes = nomes.length > 0 ? nome.people.getNome() + " " + nomes : nome.people.getNome();
+		nomes = nomes.length > 0 ? nome.people.getNome() + ", " + nomes : nome.people.getNome();
  	}
 	console.log("Agrupamento de nomes: " + nomes);
 
+	//R03
+	var filtroCalculaIMC = peopleUbuntu.filter(imc => (imc.people.getPeso() > 0));
+	var imcs = 0;
+	var totalImc = 0;
+	for(var imc of filtroCalculaIMC){
+		imcs = imcs + calculaIMC(imc.people);
+		totalImc = filtroCalculaIMC.length;
+	}
+	console.log("Média de IMC: " + imcs/totalImc);
 
 	//R04
 	var filtroEhDev = peopleUbuntu.filter(nomes => (nomes.people.getEhDev()));
