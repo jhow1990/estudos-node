@@ -44,6 +44,11 @@ app.listen(PORT, () => {
 	console.log(`Listening on port ${PORT}`);
 	
 	let peopleUbuntu:{people: People}[] = [
+		{"people": new People("Teste Silva",32,96.50,1.79, false)},
+		{"people": new People("Daniel Moraes",32,96.50,1.79, true)},
+		{"people": new People("Daniel Silva",32,96.50,1.79, true)},
+		{"people": new People("Abc Moraes",32,96.50,1.79, true)},
+		{"people": new People("DFG Silva",32,96.50,1.79, true)},
 		{"people": new People("Daniel Moraes",32,96.50,1.79, true)},
 		{"people": new People("Samuel Silva",5,96.50,1.79, false)}
 	]
@@ -81,9 +86,10 @@ app.listen(PORT, () => {
 	//R05
 	var filtroSobreNome = peopleUbuntu.filter(sobrenomeSilva => (sobrenomeSilva.people.getNome().indexOf("Silva") != -1));
 	var sobrenomeSilva = "";
-	for(var nome of filtroSobreNome){		
-		sobrenomeSilva = sobrenomeSilva.length > 0 ? nome.people.getNome() + " " + nomes : nome.people.getNome();
- 	}
-	console.log("Sobrenome Silva: " + sobrenomeSilva);
+	for(var nome of filtroSobreNome){
+		
+		console.log(nome.people.getNome());
+	}
+
 	
 });
